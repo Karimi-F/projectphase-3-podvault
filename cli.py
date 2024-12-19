@@ -17,7 +17,7 @@ def create_podcast():
     podcast_name = input("Enter Podcast name: ") 
     description = input("Enter podcast description: ")
     author = input ("Enter author's name: ")
-    podcast = Podcast(podcast_name=podcast_name, description=description, author=author)
+    podcast" = Podcast(podcast_name=podcast_name, description=description, author=author)
     session.add(podcast)
     session.commit()
     print(f"Podcast {podcast_name} created successfully!")
@@ -26,7 +26,7 @@ def create_podcast():
 
 def update_podcast():
     podcast_id = int(input("Enter Podcast ID to update: "))
-    podcast = session.get(podcast, podcast_id)    
+    podcast = session.get(Podcast, podcast_id)    
     if not podcast:
         print(f"Podcast with ID{podcast_id} does not exist.")
         return
@@ -35,3 +35,15 @@ def update_podcast():
     podcast.author = input(f"Enter new podcast author (current:{podcast.author}): ") or podcast.author
     session.commit()
     print(f"Podcast ID {podcast_id} updated successfully!")
+
+def delete_podcast():
+    podcast_id = int(input("Enter Podcast ID to delete: "))
+    podcast = session.get(Podcast, podcast_id)
+    if not podcast:
+        print(f"Podcast with ID {podcast_id} does not exist.")
+        return
+    session.delete(podcast)
+    session.commit()
+    print(f"Podcast ID {podcast_id} deleted successfully!")
+
+    
