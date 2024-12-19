@@ -1,23 +1,14 @@
-#define our tables using OOP + sqlalchemy
-from sqlalchemy import create_engine, Column, Text, Integer, String, ForeignKey, VARCHAR, DateTime
-#   from sqlalchemy import Column, Integer, String, Text, DateTime
+from sqlalchemy import Column, Text, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime
 import pytz
 
 eat = pytz.timezone("Africa/Nairobi")
-# from zoneinfo import ZoneInfo
-
-#create a base model that all our models are going to inherit from 
 Base = declarative_base()
 
-#define our first model
-# 1. It's a must we provide the table name via the attribute __tablename__
-# 2. It's a must we provide at least one table column.
 class Podcast(Base):
     __tablename__ = "podcasts"
 
-    #define columns
     id = Column(Integer, primary_key = True)
     podcast_name = Column(String, nullable=False)
     description = Column(Text, nullable=True)

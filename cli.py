@@ -22,7 +22,6 @@ def create_podcast():
     session.commit()
     print(f"Podcast {podcast_name} created successfully!")
     print(f"ID: {podcast.id} Description: {description}")
-    # print(f"Author: {author}")   
     print(f"Author: {author} Created At: {podcast.creation_time}")   
 
 def update_podcast():
@@ -63,7 +62,6 @@ def create_episode():
     session.commit()
     print(f"Episode {episode_title} created successfully!")
     print(f"Podcast ID:{podcast_id} Episode ID: {episode.id} Description: {description}")
-    # print(f"Audio URL: {audio_url}")   
     print(f"Audio URL: {audio_url} Created At: {episode.release_date}")   
 
 def update_episode():
