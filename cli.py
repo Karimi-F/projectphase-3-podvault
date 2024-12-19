@@ -114,3 +114,11 @@ def list_podcasts():
     for podcast in podcasts:
         print(podcast)
 
+def list_episodes():
+    episodes = session.query(Episode).all()
+    if not episodes:
+        print("No Episodes found.")
+        return
+    for episode in episodes:
+        print(episode)
+
