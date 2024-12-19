@@ -70,7 +70,7 @@ def update_episode():
     episode_id = int(input("Enter Episode ID to update: "))
     episode = session.get(Episode, episode_id)    
     if not episode:
-        print(f"Episode with ID{episode_id} does not exist.")
+        print(f"Episode with ID {episode_id} does not exist.")
         return
     episode.episode_title = input(f"Enter new episode title (current:{episode.episode_title}): ") or episode.episode_title
     episode.description = input(f"Enter new episode description (current:{episode.description}): ") or episode.description
