@@ -106,3 +106,11 @@ def assign_episode():
     session.commit()
     print("Episode added to Podcast successsfully!")
 
+def list_podcasts():
+    podcasts = session.query(Podcast).all()
+    if not podcasts:
+        print("No Podcasts found.")
+        return
+    for podcast in podcasts:
+        print(podcast)
+
