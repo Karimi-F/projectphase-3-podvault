@@ -21,7 +21,8 @@ def create_podcast():
     session.add(podcast)
     session.commit()
     print(f"Podcast {podcast_name} created successfully!")
-    print(f"ID: {podcast.id} Description: {description  or "No description provided"}")
+    print(f"ID: {podcast.id} Description: {description}")
+    # print(f"Author: {author}")   
     print(f"Author: {author} Created At: {podcast.creation_time}")   
 
 def update_podcast():
@@ -61,8 +62,9 @@ def create_episode():
     session.add(episode)
     session.commit()
     print(f"Episode {episode_title} created successfully!")
-    print(f"Podcast ID:{podcast_id} Episode ID: {episode.id} Description: {description  or "No description provided"}")
-    print(f"Audio URL: {audio_url} Created At: {episode.creation_time}")   
+    print(f"Podcast ID:{podcast_id} Episode ID: {episode.id} Description: {description}")
+    # print(f"Audio URL: {audio_url}")   
+    print(f"Audio URL: {audio_url} Created At: {episode.release_date}")   
 
 def update_episode():
     episode_id = int(input("Enter Episode ID to update: "))
@@ -138,3 +140,51 @@ def episodes_by_podcast():
             
 
 
+def main_menu():
+    while True:
+        print("\n Welcome to PodVault. What would you like to do today?")
+        print("1. Create Podcast.")
+        print("2. Update Podcast.")
+        print("3. Delete Podcast.")
+        print("4. Create Episode.")
+        print("5. Update Episode.")
+        print("6. Delete Episode.")
+        print("7. Assign Episode to Podcast.")
+        print("8. List Podcasts.")
+        print("9. List Episodes.")
+        print("10. View Episodes per Podcast.")
+        print("11. Exit")
+        choice = input("Enter your choice:")
+
+        if choice == "1":
+            create_podcast()
+        elif choice == "2":
+            update_podcast()    
+        elif choice == "3":
+            delete_podcast()    
+        elif choice == "4":
+            create_episode()    
+        elif choice == "5":
+            update_episode()    
+        elif choice == "6":
+            delete_episode()    
+        elif choice == "7":
+            assign_episode()    
+        elif choice == "8":
+            list_podcasts()    
+        elif choice == "9":
+            list_episodes()    
+        elif choice == "10":
+            episodes_by_podcast()    
+        elif choice == "11":
+            print("Exiting...")
+            sys.exit()
+        else:
+            print("Invalid choice. Please try again.") 
+
+
+if __name__ == "__main__":
+    init_db()
+    main_menu()      
+
+        

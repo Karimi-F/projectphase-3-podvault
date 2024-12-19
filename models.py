@@ -3,7 +3,10 @@ from sqlalchemy import create_engine, Column, Text, Integer, String, ForeignKey,
 #   from sqlalchemy import Column, Integer, String, Text, DateTime
 from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime
-from zoneinfo import ZoneInfo
+import pytz
+
+eat = pytz.timezone("Africa/Nairobi")
+# from zoneinfo import ZoneInfo
 
 #create a base model that all our models are going to inherit from 
 Base = declarative_base()
@@ -19,7 +22,7 @@ class Podcast(Base):
     podcast_name = Column(String, nullable=False)
     description = Column(Text, nullable=True)
     author = Column(String, nullable=False)
-    creation_time = Column(DateTime, default=lambda:datetime.now(ZoneInfo("Africa/Nairobi")), nullable=False)
+    creation_time = Column(DateTime, default=lambda: datetime.now(eat), nullable=False)
 
     episodes = relationship("Episode", back_populates="podcast")
 
@@ -36,9 +39,9 @@ class Episode(Base):
     episode_title = Column(String, nullable=False)
     description = Column(String, nullable = True)
     audio_url = Column(String, nullable=False)
-    release_date = Column(DateTime, default=lambda:datetime.now(ZoneInfo("Africa/Nairobi")), nullable=False)
+    release_date = Column(DateTime, default=lambda: datetime.now(eat), nullable=False)
     podcast_id = Column(Integer, ForeignKey("podcasts.id"), nullable=False)
-    update_time = Column(DateTime,default=lambda:datetime.now(ZoneInfo("Africa/Nairobi")), nullable=True)
+    update_time = Column(DateTime, default=lambda: datetime.now(eat), nullable=False)
 
     podcast = relationship("Podcast", back_populates="episodes")
 
