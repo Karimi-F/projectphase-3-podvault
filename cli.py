@@ -64,8 +64,27 @@ def create_episode():
     print(f"Podcast ID:{podcast_id} Episode ID: {episode.id} Description: {description  or "No description provided"}")
     print(f"Audio URL: {audio_url} Created At: {episode.creation_time}")   
 
-    
+def update_episode():
+    episode_id = int(input("Enter Episode ID to update: "))
+    episode = session.get(Episode, episode_id)    
+    if not episode:
+        print(f"Episode with ID{episode_id} does not exist.")
+        return
+    episode.episode_title = input(f"Enter new episode title (current:{episode.episode_title}): ") or episode.episode_title
+    episode.description = input(f"Enter new episode description (current:{episode.description}): ") or episode.description
+    episode.audio_url = input(f"Enter new audio url (current:{episode.audio_url}): ") or episode.audio_url
+    new_podcast_id = input (f"Enter new Podcast ID for Episode (current: {episode.podcast_id})") or episode.podcast_id
+    if new_podcast_id:
+        new_podcast = session.get(Podcast, int(new_podcast_id))
+        if not new_podcast:
+            print(f"Podcast with ID {new_podcast_id} does not exist.")
+        else:
+            episode.podcast_id = new_podcast_id
+    session.commit()
+    print(f"Episode ID {episode_id} updated successfully!")
 
+def delete_episode():
+    
 
 
     
