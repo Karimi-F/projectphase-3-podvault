@@ -24,4 +24,14 @@ def create_podcast():
     print(f"ID: {podcast.id} Description: {description  or "No description provided"}")
     print(f"Author: {author} Created At: {podcast.creation_time}")   
 
-    
+def update_podcast():
+    podcast_id = int(input("Enter Podcast ID to update: "))
+    podcast = session.get(podcast, podcast_id)    
+    if not podcast:
+        print(f"Podcast with ID{podcast_id} does not exist.")
+        return
+    podcast.podcast_name = input(f"Enter new podcast name (current:{podcast.podcast_name}): ") or podcast.podcast_name
+    podcast.description = input(f"Enter new podcast description (current:{podcast.description}): ") or podcast.description
+    podcast.author = input(f"Enter new podcast author (current:{podcast.author}): ") or podcast.author
+    session.commit()
+    print(f"Podcast ID {podcast_id} updated successfully!")
