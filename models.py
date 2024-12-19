@@ -15,4 +15,4 @@ class Episode(Base):
     id = Column(Integer(), primary_key = True)
     podcast_name = Column(String(), nullable=False)
     episode_title = Column(String(), nullable=False)
-    email = Column(VARCHAR(), nullable=False, unique=True)
+    
