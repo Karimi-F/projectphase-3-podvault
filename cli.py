@@ -122,3 +122,19 @@ def list_episodes():
     for episode in episodes:
         print(episode)
 
+def episodes_by_podcast():
+    podcast_id = int(input("Enter Podcast ID to view the episodes: "))
+    podcast = session.get(Podcast, podcast_id)
+    if not podcast:
+        print(f"Podcast with ID {podcast_id} does not exist.")
+        return
+    episodes = podcast.episodes
+    if not episodes:
+        print(f"No episodes found for podcast with ID {podcast_id}")
+        return
+    print(f"Episodes for podcast {podcast.podcast_name} with (ID {podcast_id}):")
+    for episode in episodes:
+        print(episode)
+            
+
+
