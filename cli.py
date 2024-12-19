@@ -84,7 +84,12 @@ def update_episode():
     print(f"Episode ID {episode_id} updated successfully!")
 
 def delete_episode():
-    
+    episode_id = int(input("Enter Episode ID to delete: "))
+    episode = session.get(Episode, episode_id)
+    if not episode:
+        print(f"Episode with ID {episode_id} does not exist.")
+        return
+    session.delete(episode)
+    session.commit()
+    print(f"Episode ID {episode_id} deleted successfully!")
 
-
-    
