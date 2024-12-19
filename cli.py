@@ -93,3 +93,16 @@ def delete_episode():
     session.commit()
     print(f"Episode ID {episode_id} deleted successfully!")
 
+def assign_episode():
+    episode_id = int(input("Enter Episode ID:"))
+    podcast_id = int(input("Enter the Podcast ID:"))  
+    episode = session.get(Episode, episode_id)
+    podcast = session.get(Podcast, podcast_id)
+
+    if not episode or not podcast:
+        print("Invalid Episode ID or Podcast ID!")
+        return  
+    episode.podcast_id = podcast_id
+    session.commit()
+    print("Episode added to Podcast successsfully!")
+
