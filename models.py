@@ -13,5 +13,6 @@ class Episode(Base):
 
     #define columns
     id = Column(Integer(), primary_key = True)
-    title = Column(String(), nullable=False)
+    podcast_name = Column(String(), nullable=False)
+    episode_title = Column(String(), nullable=False)
     email = Column(VARCHAR(), nullable=False, unique=True)
