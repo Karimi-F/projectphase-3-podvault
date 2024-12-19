@@ -17,7 +17,7 @@ def create_podcast():
     podcast_name = input("Enter Podcast name: ") 
     description = input("Enter podcast description: ")
     author = input ("Enter author's name: ")
-    podcast" = Podcast(podcast_name=podcast_name, description=description, author=author)
+    podcast = Podcast(podcast_name=podcast_name, description=description, author=author)
     session.add(podcast)
     session.commit()
     print(f"Podcast {podcast_name} created successfully!")
@@ -45,5 +45,27 @@ def delete_podcast():
     session.delete(podcast)
     session.commit()
     print(f"Podcast ID {podcast_id} deleted successfully!")
+
+
+
+def create_episode():
+    episode_title = input("Enter Episode title: ") 
+    description = input("Enter episode description: ")
+    audio_url = input ("Enter audio url: ")
+    podcast_id = int(input("Enter Podcast ID:"))
+    podcast = session.get(Podcast, podcast_id)
+    if not podcast:
+        print(f"Podcast with ID {podcast_id} does not exist")
+        return
+    episode = Episode(episode_title=episode_title, description=description, audio_url=audio_url, podcast_id=podcast_id)
+    session.add(episode)
+    session.commit()
+    print(f"Episode {episode_title} created successfully!")
+    print(f"Podcast ID:{podcast_id} Episode ID: {episode.id} Description: {description  or "No description provided"}")
+    print(f"Audio URL: {audio_url} Created At: {episode.creation_time}")   
+
+    
+
+
 
     
